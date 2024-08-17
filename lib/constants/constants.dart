@@ -33,7 +33,7 @@ class WoocommerceInfo {
 class Constants {
   static final NumberFormat numberFormat = NumberFormat.decimalPattern('fa');
 
-  static const Color primaryColor = Color(0xFF296E48);
+  static const Color primaryColor = Color(0xffED03B9);
   static const Color blackColor = Colors.black54;
   static const Color purpleColor = Color(0xFF301984);
 }

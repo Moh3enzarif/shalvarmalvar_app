@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "package:shalvarmalvar_app/constants/constants.dart";
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+// import "package:shalvarmalvar_app/constants/constants.dart";
+// import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:shalvarmalvar_app/ui/home/home_page.dart';
 import 'package:shalvarmalvar_app/ui/profile/profile_page.dart';
 import 'package:shalvarmalvar_app/ui/cart/cart_page.dart';
