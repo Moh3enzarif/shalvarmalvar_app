@@ -95,24 +95,7 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 150,
-            right: 20,
-            left: 20,
-            child: SizedBox(
-              width: size.width * 0.8,
-              height: size.height * 0.8,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
+                      const SizedBox(height: 20),
                       Directionality(
                         textDirection: TextDirection.rtl,
                         child: TextField(
@@ -147,24 +130,7 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 150,
-            right: 20,
-            left: 20,
-            child: SizedBox(
-              width: size.width * 0.8,
-              height: size.height * 0.8,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
+                      const SizedBox(height: 20),
                       Directionality(
                         textDirection: TextDirection.rtl,
                         child: TextField(
@@ -174,6 +140,7 @@ class _SignupPageState extends State<SignupPage> {
                             fontSize: 20,
                             height: 2,
                           ),
+                          textDirection: TextDirection.ltr,
                           decoration: InputDecoration(
                             hintTextDirection: TextDirection.rtl,
                             focusedBorder: const OutlineInputBorder(
@@ -199,24 +166,7 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 150,
-            right: 20,
-            left: 20,
-            child: SizedBox(
-              width: size.width * 0.8,
-              height: size.height * 0.8,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
+                      const SizedBox(height: 20),
                       Directionality(
                         textDirection: TextDirection.rtl,
                         child: TextField(
@@ -226,6 +176,7 @@ class _SignupPageState extends State<SignupPage> {
                             fontSize: 20,
                             height: 2,
                           ),
+                          textDirection: TextDirection.ltr,
                           decoration: InputDecoration(
                             hintTextDirection: TextDirection.rtl,
                             focusedBorder: const OutlineInputBorder(
@@ -251,6 +202,42 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Constants.primaryColor,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 30,
+                                vertical: 10,
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              'ثبت نام',
+                              style:
+                                  TextStyle(fontFamily: "Muli", fontSize: 15),
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Constants.primaryColor,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 30,
+                                vertical: 10,
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              'قبلا ثبت نام کردی؟',
+                              style:
+                                  TextStyle(fontFamily: "Muli", fontSize: 15),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
