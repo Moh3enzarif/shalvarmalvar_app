@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import "package:shalvarmalvar_app/constants/constants.dart";
-// import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import "package:shalvarmalvar_app/constants/constants.dart";
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:shalvarmalvar_app/ui/home/home_page.dart';
 import 'package:shalvarmalvar_app/ui/profile/profile_page.dart';
 import 'package:shalvarmalvar_app/ui/cart/cart_page.dart';
@@ -18,23 +18,23 @@ class _RootPageState extends State<RootPage> {
 
   List<Widget> pages = const [
     HomePage(),
+    CatalogPage(),
     CartPage(),
     ProfilePage(),
-    CatalogPage(),
   ];
 
   List<IconData> iconList = [
     Icons.home,
+    Icons.favorite,
     Icons.shopping_cart,
     Icons.person,
-    Icons.favorite,
   ];
 
   List<String> appBarTitle = [
     'خانه',
+    'علاقه‌مندی‌ها',
     'سبدخرید',
     'پروفایل',
-    'علاقه‌مندی‌ها',
   ];
 
   @override

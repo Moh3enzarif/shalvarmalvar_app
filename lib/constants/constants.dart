@@ -4,11 +4,13 @@ import 'package:shalvarmalvar_app/constants/zarinpal_id.dart';
 
 class WoocommerceInfo {
   // BASE URL
-  static const String _baseURL = 'https://SITE.COM/wp-json';
+  static const String _baseURL = 'https://shalvarmalvar.com/wp-json/';
 
   // CONSUMERKEY & CONSUMERSECRET
-  static const String consumerKey = 'ck_';
-  static const String consumerSecret = 'cs_';
+  static const String consumerKey =
+      'ck_780efa66b1d076223ce8277e18c95a281c71efbe';
+  static const String consumerSecret =
+      'cs_6461e85b8eaa003d7298c1ad0dfa608d43e627dc';
 
   // BASE URL WOOCOMMERCE
   static const String baseURL = '$_baseURL/wc/v3/';
