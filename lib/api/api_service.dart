@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:shalvarmalvar_app/constants/constants.dart';
 import 'package:shalvarmalvar_app/models/woocommerce/register_model.dart';

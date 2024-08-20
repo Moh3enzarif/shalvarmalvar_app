@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show NumberFormat;
-import 'package:shalvarmalvar_app/constants/zarinpal_id.dart';
+// import 'package:shalvarmalvar_app/constants/zarinpal_id.dart';
 
 class WoocommerceInfo {
   // BASE URL
@@ -38,11 +38,11 @@ class Constants {
   static const Color purpleColor = Color(0xFF301984);
 }
 
-class ZarinpalInfo {
-  static const String zarinpalMerchId = ZarinpalMerchID.id;
-  static const String zarinpalCallBackURL = 'https://nabegheha.com/trust-us';
-  static const String zarinpalRequestURL =
-      'https://api.zarinpal.com/pg/v4/payment/request.json';
-  static const String zarinpalVerifyURL =
-      'https://api.zarinpal.com/pg/v4/payment/verify.json';
-}
+// class ZarinpalInfo {
+//   static const String zarinpalMerchId = ZarinpalMerchID.id;
+//   static const String zarinpalCallBackURL = 'https://nabegheha.com/trust-us';
+//   static const String zarinpalRequestURL =
+//       'https://api.zarinpal.com/pg/v4/payment/request.json';
+//   static const String zarinpalVerifyURL =
+//       'https://api.zarinpal.com/pg/v4/payment/verify.json';
+// }

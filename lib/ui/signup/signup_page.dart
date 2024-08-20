@@ -1,10 +1,8 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shalvarmalvar_app/constants/constants.dart';
 import 'package:shalvarmalvar_app/api/api_service.dart';
 import 'package:shalvarmalvar_app/models/woocommerce/register_model.dart';
+import 'package:shalvarmalvar_app/ui/signup/custom_form_field.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -49,7 +47,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   child: const Icon(
                     Icons.close,
-                    color: Constants.primaryColor,
+                    color: Constants.blackColor,
                   ),
                 ),
                 Container(
@@ -61,7 +59,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   child: const Icon(
                     Icons.share,
-                    color: Constants.primaryColor,
+                    color: Constants.blackColor,
                   ),
                 ),
               ],
@@ -81,169 +79,69 @@ class _SignupPageState extends State<SignupPage> {
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
-                        Directionality(
+                        // This is begin of custom_form_field
+
+                        CustomFormField(
+                          validator: (value) {
+                            if (value.toString().isEmpty) {
+                              return "این فیلد الزامی است";
+                            }
+                            return null;
+                          },
+                          initialValue: customerModel.firstname,
+                          onChanged: (value) {
+                            customerModel.firstname = value;
+                          },
                           textDirection: TextDirection.rtl,
-                          child: TextFormField(
-                            initialValue: customerModel.firstname,
-                            onChanged: (value) {
-                              customerModel.firstname = value;
-                            },
-                            cursorColor: Constants.primaryColor,
-                            style: const TextStyle(
-                              fontFamily: "Muli",
-                              fontSize: 20,
-                              height: 2,
-                            ),
-                            decoration: InputDecoration(
-                              hintTextDirection: TextDirection.rtl,
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Constants.primaryColor,
-                                  width: 2,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 15,
-                                vertical: 15,
-                              ),
-                              label: const Text(
-                                "نام",
-                                style: TextStyle(
-                                    fontFamily: "Muli",
-                                    fontSize: 20,
-                                    color: Constants.primaryColor),
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value.toString().isEmpty) {
-                                return "این فیلد الزامی است";
-                              }
-                              return null;
-                            },
-                          ),
+                          labelName: "نام",
                         ),
                         const SizedBox(height: 20),
-                        Directionality(
+                        CustomFormField(
+                          validator: (value) {
+                            if (value.toString().isEmpty) {
+                              return "این فیلد الزامی است";
+                            }
+                            return null;
+                          },
+                          initialValue: customerModel.lastname,
+                          onChanged: (value) {
+                            customerModel.lastname = value;
+                          },
                           textDirection: TextDirection.rtl,
-                          child: TextFormField(
-                            initialValue: customerModel.lastname,
-                            onChanged: (value) {
-                              customerModel.lastname = value;
-                            },
-                            cursorColor: Constants.primaryColor,
-                            style: const TextStyle(
-                              fontFamily: "Muli",
-                              fontSize: 20,
-                              height: 2,
-                            ),
-                            decoration: InputDecoration(
-                              hintTextDirection: TextDirection.rtl,
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Constants.primaryColor,
-                                  width: 2,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 15,
-                                vertical: 15,
-                              ),
-                              label: const Text(
-                                "نام خانوادگی",
-                                style: TextStyle(
-                                    fontFamily: "Muli",
-                                    fontSize: 20,
-                                    color: Constants.primaryColor),
-                              ),
-                            ),
-                          ),
+                          labelName: "نام خانوادگی",
                         ),
                         const SizedBox(height: 20),
-                        Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: TextFormField(
-                            initialValue: customerModel.email,
-                            onChanged: (value) {
-                              customerModel.email = value;
-                            },
-                            cursorColor: Constants.primaryColor,
-                            style: const TextStyle(
-                              fontFamily: "Muli",
-                              fontSize: 20,
-                              height: 2,
-                            ),
-                            textDirection: TextDirection.ltr,
-                            decoration: InputDecoration(
-                              hintTextDirection: TextDirection.rtl,
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Constants.primaryColor,
-                                  width: 2,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 15,
-                                vertical: 15,
-                              ),
-                              label: const Text(
-                                "ایمیل",
-                                style: TextStyle(
-                                    fontFamily: "Muli",
-                                    fontSize: 20,
-                                    color: Constants.primaryColor),
-                              ),
-                            ),
-                          ),
+                        CustomFormField(
+                          validator: (value) {
+                            if (value.toString().isEmpty) {
+                              return "این فیلد الزامی است";
+                            }
+                            return null;
+                          },
+                          initialValue: customerModel.email,
+                          onChanged: (value) {
+                            customerModel.email = value;
+                          },
+                          textDirection: TextDirection.ltr,
+                          labelName: "ایمیل",
                         ),
                         const SizedBox(height: 20),
-                        Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: TextFormField(
-                            initialValue: customerModel.password,
-                            onChanged: (value) {
-                              customerModel.password = value;
-                            },
-                            cursorColor: Constants.primaryColor,
-                            style: const TextStyle(
-                              fontFamily: "Muli",
-                              fontSize: 20,
-                              height: 2,
-                            ),
-                            textDirection: TextDirection.ltr,
-                            decoration: InputDecoration(
-                              hintTextDirection: TextDirection.rtl,
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Constants.primaryColor,
-                                  width: 2,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 15,
-                                vertical: 15,
-                              ),
-                              label: const Text(
-                                "رمز عبور",
-                                style: TextStyle(
-                                    fontFamily: "Muli",
-                                    fontSize: 20,
-                                    color: Constants.primaryColor),
-                              ),
-                            ),
-                          ),
+                        CustomFormField(
+                          validator: (value) {
+                            if (value.toString().isEmpty) {
+                              return "این فیلد الزامی است";
+                            }
+                            return null;
+                          },
+                          initialValue: customerModel.password,
+                          onChanged: (value) {
+                            customerModel.password = value;
+                          },
+                          textDirection: TextDirection.ltr,
+                          labelName: "رمز عبور",
                         ),
+                        // This is end of custom_form_field
+
                         const SizedBox(height: 20),
                         Row(
                           children: [
@@ -258,8 +156,14 @@ class _SignupPageState extends State<SignupPage> {
                               onPressed: () {
                                 if (globalKey.currentState!.validate()) {
                                   debugPrint('${customerModel.toJson()}');
+                                  setState(() {
+                                    isApiCalled = false;
+                                  });
                                   apiService.createCustomer(customerModel).then(
                                     (retRes) {
+                                      setState(() {
+                                        isApiCalled = false;
+                                      });
                                       if (retRes) {
                                         showDialog(
                                           context: context,
@@ -312,7 +216,7 @@ class _SignupPageState extends State<SignupPage> {
                             const SizedBox(width: 20),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Constants.primaryColor,
+                                backgroundColor: Colors.white,
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 30,
                                   vertical: 10,
@@ -326,7 +230,18 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                             ),
                           ],
-                        )
+                        ),
+                        const SizedBox(height: 30),
+                        isApiCalled
+                            ? const Text(
+                                "لطفا منتظر بمانید ...",
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                  fontFamily: "Muli",
+                                  fontSize: 20,
+                                ),
+                              )
+                            : const Text(""),
                       ],
                     ),
                   ),
