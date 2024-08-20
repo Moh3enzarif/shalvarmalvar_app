@@ -3,6 +3,7 @@ import 'package:shalvarmalvar_app/constants/constants.dart';
 import 'package:shalvarmalvar_app/api/api_service.dart';
 import 'package:shalvarmalvar_app/models/woocommerce/register_model.dart';
 import 'package:shalvarmalvar_app/ui/signup/custom_form_field.dart';
+import 'package:shalvarmalvar_app/ui/utils/extentions.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -116,6 +117,9 @@ class _SignupPageState extends State<SignupPage> {
                             if (value.toString().isEmpty) {
                               return "این فیلد الزامی است";
                             }
+                            if (!value!.isValidEmail) {
+                              return "ایمیل معتبر نمیباشد";
+                            }
                             return null;
                           },
                           initialValue: customerModel.email,
@@ -130,6 +134,9 @@ class _SignupPageState extends State<SignupPage> {
                           validator: (value) {
                             if (value.toString().isEmpty) {
                               return "این فیلد الزامی است";
+                            }
+                            if (!value!.isValidEmail) {
+                              return "پسورد قوی نمیباشد";
                             }
                             return null;
                           },
