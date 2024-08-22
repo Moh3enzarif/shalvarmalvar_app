@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:shalvarmalvar_app/constants/constants.dart';
+import 'package:shalvarmalvar_app/models/woocommerce/login_model.dart';
 import 'package:shalvarmalvar_app/models/woocommerce/register_model.dart';
 
 class ApiService {
@@ -32,5 +33,30 @@ class ApiService {
       }
     }
     return returnResponse;
+  }
+
+  Future<LoginResponseModel> loginCustomer(
+    String username,
+    String password,
+  ) async {
+    late LoginResponseModel loginModel;
+    try {
+      var response = await Dio().post(
+        WoocommerceInfo.tokenURL,
+        data: {
+          'username': username,
+          'password': password,
+        },
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+        }),
+      );
+      if (response.statusCode == 200) {
+        loginModel = LoginResponseModel.fromJson(response.data);
+      }
+    } on DioException catch (e) {
+      throw 'Error $e';
+    }
+    return loginModel;
   }
 }
