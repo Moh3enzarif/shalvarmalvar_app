@@ -24,7 +24,7 @@ class CustomFormField extends StatelessWidget {
       child: TextFormField(
         initialValue: initialValue != null ? initialValue.toString() : '',
         onChanged: onChanged,
-        cursorColor: Constants.primaryColor,
+        cursorColor: Constants.blackColor,
         style: const TextStyle(
           fontFamily: "Muli",
           fontSize: 20,
@@ -37,6 +37,11 @@ class CustomFormField extends StatelessWidget {
             borderSide: BorderSide(
               color: Constants.primaryColor,
               width: 2,
+            ),
+          ),
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Constants.primaryColor,
             ),
           ),
           border: OutlineInputBorder(

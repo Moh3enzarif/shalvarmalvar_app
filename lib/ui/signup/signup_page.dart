@@ -4,6 +4,7 @@ import 'package:shalvarmalvar_app/api/api_service.dart';
 import 'package:shalvarmalvar_app/models/woocommerce/register_model.dart';
 import 'package:shalvarmalvar_app/ui/signup/custom_form_field.dart';
 import 'package:shalvarmalvar_app/ui/utils/extentions.dart';
+import 'package:shalvarmalvar_app/ui/utils/custom_diolog_box.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -135,7 +136,7 @@ class _SignupPageState extends State<SignupPage> {
                             if (value.toString().isEmpty) {
                               return "این فیلد الزامی است";
                             }
-                            if (!value!.isValidEmail) {
+                            if (!value!.isValidPassword) {
                               return "پسورد قوی نمیباشد";
                             }
                             return null;
@@ -154,7 +155,7 @@ class _SignupPageState extends State<SignupPage> {
                           children: [
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Constants.primaryColor,
+                                backgroundColor: Colors.white,
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 30,
                                   vertical: 10,
@@ -164,7 +165,7 @@ class _SignupPageState extends State<SignupPage> {
                                 if (globalKey.currentState!.validate()) {
                                   debugPrint('${customerModel.toJson()}');
                                   setState(() {
-                                    isApiCalled = false;
+                                    isApiCalled = true;
                                   });
                                   apiService.createCustomer(customerModel).then(
                                     (retRes) {
@@ -172,41 +173,23 @@ class _SignupPageState extends State<SignupPage> {
                                         isApiCalled = false;
                                       });
                                       if (retRes) {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: const Text("ووکامرس"),
-                                              content: const Text(
-                                                  "ثبت نام با موفقیت انجام شد"),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text("باشه"),
-                                                ),
-                                              ],
-                                            );
+                                        CustomDiologBox.showMessage(
+                                          context,
+                                          'ثبت نام موفق',
+                                          'ثبت نام با موفقیت انجام شد',
+                                          'بستن',
+                                          () {
+                                            Navigator.of(context).pop();
                                           },
                                         );
                                       } else {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: const Text("ووکامرس"),
-                                              content: const Text(
-                                                  "ایمیل قبللا ثبت شده است"),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text("باشه"),
-                                                ),
-                                              ],
-                                            );
+                                        CustomDiologBox.showMessage(
+                                          context,
+                                          'ثبت نام ناموفق',
+                                          'ایمیل نامعتبراست',
+                                          'بستن',
+                                          () {
+                                            Navigator.of(context).pop();
                                           },
                                         );
                                       }
