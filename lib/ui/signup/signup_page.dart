@@ -5,6 +5,7 @@ import 'package:shalvarmalvar_app/models/woocommerce/register_model.dart';
 import 'package:shalvarmalvar_app/ui/signup/custom_form_field.dart';
 import 'package:shalvarmalvar_app/ui/utils/extentions.dart';
 import 'package:shalvarmalvar_app/ui/utils/custom_diolog_box.dart';
+import 'package:shalvarmalvar_app/ui/utils/custom_appbar.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -21,7 +22,6 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     apiService = ApiService();
     customerModel = CustomerModel();
     super.initState();
@@ -33,6 +33,9 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       body: Stack(
         children: [
+          const CustomAppbar(
+            appBarTitle: "ثبت نام",
+          ),
           Positioned(
             top: 50,
             right: 20,
