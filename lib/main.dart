@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shalvarmalvar_app/ui/root/root_page.dart';
-import 'package:shalvarmalvar_app/ui/signup/signup_page.dart';
+import 'package:shalvarmalvar_app/ui/login/login_page.dart';
+// import 'package:shalvarmalvar_app/ui/root/root_page.dart';
+// import 'package:shalvarmalvar_app/ui/signup/signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,9 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignupPage(),
+      home: LoginPage(),
     );
   }
 }
