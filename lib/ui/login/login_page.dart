@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:shalvarmalvar_app/constants/constants.dart';
 import 'package:shalvarmalvar_app/api/api_service.dart';
 import 'package:shalvarmalvar_app/models/woocommerce/register_model.dart';
-import 'package:shalvarmalvar_app/ui/signup/custom_form_field.dart';
-import 'package:shalvarmalvar_app/ui/utils/extentions.dart';
+import 'package:shalvarmalvar_app/ui/signup/signup_page.dart';
 import 'package:shalvarmalvar_app/ui/utils/custom_diolog_box.dart';
 import 'package:shalvarmalvar_app/ui/utils/custom_appbar.dart';
 
@@ -19,6 +19,9 @@ class _LoginPageState extends State<LoginPage> {
   late CustomerModel customerModel;
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   bool isApiCalled = false;
+  TextEditingController email =
+      TextEditingController(text: "pavane32jdf345@gmail.com");
+  TextEditingController pasword = TextEditingController(text: "ZYXrcNQgTUCIq");
 
   @override
   void initState() {
@@ -33,8 +36,10 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Stack(
         children: [
-          const CustomAppbar(
-            appBarTitle: "ورود به برنامه",
+          AppBar(
+            title: const CustomAppbar(
+              appBarTitle: "ورود به برنامه",
+            ),
           ),
           Positioned(
             top: 50,
@@ -84,75 +89,103 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
-                        // This is begin of custom_form_field
-
-                        CustomFormField(
-                          validator: (value) {
-                            if (value.toString().isEmpty) {
-                              return "این فیلد الزامی است";
-                            }
-                            return null;
-                          },
-                          initialValue: customerModel.firstname,
-                          onChanged: (value) {
-                            customerModel.firstname = value;
-                          },
+                        Directionality(
                           textDirection: TextDirection.rtl,
-                          labelName: "نام",
+                          child: TextFormField(
+                            controller: email,
+                            cursorColor: Constants.blackColor,
+                            style: const TextStyle(
+                              fontFamily: "Muli",
+                              fontSize: 20,
+                              height: 2,
+                            ),
+                            textDirection: TextDirection.ltr,
+                            decoration: InputDecoration(
+                              hintTextDirection: TextDirection.rtl,
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Constants.primaryColor,
+                                  width: 2,
+                                ),
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Constants.primaryColor,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 15,
+                                vertical: 15,
+                              ),
+                              label: const Text(
+                                "ایمیل",
+                                style: TextStyle(
+                                    fontFamily: "Muli",
+                                    fontSize: 20,
+                                    color: Constants.blackColor,
+                                    fontWeight: FontWeight.w900),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value.toString().isEmpty) {
+                                return "این فیلد الزامی است";
+                              }
+                              return null;
+                            },
+                          ),
                         ),
                         const SizedBox(height: 20),
-                        CustomFormField(
-                          validator: (value) {
-                            if (value.toString().isEmpty) {
-                              return "این فیلد الزامی است";
-                            }
-                            return null;
-                          },
-                          initialValue: customerModel.lastname,
-                          onChanged: (value) {
-                            customerModel.lastname = value;
-                          },
+                        Directionality(
                           textDirection: TextDirection.rtl,
-                          labelName: "نام خانوادگی",
+                          child: TextFormField(
+                            controller: pasword,
+                            cursorColor: Constants.blackColor,
+                            style: const TextStyle(
+                              fontFamily: "Muli",
+                              fontSize: 20,
+                              height: 2,
+                            ),
+                            textDirection: TextDirection.ltr,
+                            decoration: InputDecoration(
+                              hintTextDirection: TextDirection.rtl,
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Constants.primaryColor,
+                                  width: 2,
+                                ),
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Constants.primaryColor,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 15,
+                                vertical: 15,
+                              ),
+                              label: const Text(
+                                "رمز عبور",
+                                style: TextStyle(
+                                    fontFamily: "Muli",
+                                    fontSize: 20,
+                                    color: Constants.blackColor,
+                                    fontWeight: FontWeight.w900),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value.toString().isEmpty) {
+                                return "این فیلد الزامی است";
+                              }
+                              return null;
+                            },
+                          ),
                         ),
-                        const SizedBox(height: 20),
-                        CustomFormField(
-                          validator: (value) {
-                            if (value.toString().isEmpty) {
-                              return "این فیلد الزامی است";
-                            }
-                            if (!value!.isValidEmail) {
-                              return "ایمیل معتبر نمیباشد";
-                            }
-                            return null;
-                          },
-                          initialValue: customerModel.email,
-                          onChanged: (value) {
-                            customerModel.email = value;
-                          },
-                          textDirection: TextDirection.ltr,
-                          labelName: "ایمیل",
-                        ),
-                        const SizedBox(height: 20),
-                        CustomFormField(
-                          validator: (value) {
-                            if (value.toString().isEmpty) {
-                              return "این فیلد الزامی است";
-                            }
-                            if (!value!.isValidPassword) {
-                              return "پسورد قوی نمیباشد";
-                            }
-                            return null;
-                          },
-                          initialValue: customerModel.password,
-                          onChanged: (value) {
-                            customerModel.password = value;
-                          },
-                          textDirection: TextDirection.ltr,
-                          labelName: "رمز عبور",
-                        ),
-                        // This is end of custom_form_field
-
                         const SizedBox(height: 20),
                         Row(
                           children: [
@@ -166,20 +199,25 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               onPressed: () {
                                 if (globalKey.currentState!.validate()) {
-                                  debugPrint('${customerModel.toJson()}');
+                                  // debugPrint('${customerModel.toJson()}');
                                   setState(() {
                                     isApiCalled = true;
                                   });
-                                  apiService.createCustomer(customerModel).then(
+                                  apiService
+                                      .loginCustomer(
+                                    email.text,
+                                    pasword.text,
+                                  )
+                                      .then(
                                     (retRes) {
                                       setState(() {
                                         isApiCalled = false;
                                       });
-                                      if (retRes) {
+                                      if (retRes.success!) {
                                         CustomDiologBox.showMessage(
                                           context,
-                                          'ثبت نام موفق',
-                                          'ثبت نام با موفقیت انجام شد',
+                                          'ورود موفق',
+                                          'با موفقیت وارد شدید',
                                           'بستن',
                                           () {
                                             Navigator.of(context).pop();
@@ -188,8 +226,8 @@ class _LoginPageState extends State<LoginPage> {
                                       } else {
                                         CustomDiologBox.showMessage(
                                           context,
-                                          'ثبت نام ناموفق',
-                                          'ایمیل نامعتبراست',
+                                          'ناموفق',
+                                          'ایمیل یا رمز عبور نامعتبراست',
                                           'بستن',
                                           () {
                                             Navigator.of(context).pop();
@@ -201,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                                 }
                               },
                               child: const Text(
-                                'ثبت نام',
+                                'ورود',
                                 style:
                                     TextStyle(fontFamily: "Muli", fontSize: 15),
                               ),
@@ -215,9 +253,16 @@ class _LoginPageState extends State<LoginPage> {
                                   vertical: 10,
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  PageTransition(
+                                      child: const SignupPage(),
+                                      type: PageTransitionType.leftToRight),
+                                );
+                              },
                               child: const Text(
-                                'قبلا ثبت نام کردی؟',
+                                'اکانت ندارید؟',
                                 style:
                                     TextStyle(fontFamily: "Muli", fontSize: 15),
                               ),

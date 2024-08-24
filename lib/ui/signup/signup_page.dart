@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:shalvarmalvar_app/constants/constants.dart';
 import 'package:shalvarmalvar_app/api/api_service.dart';
 import 'package:shalvarmalvar_app/models/woocommerce/register_model.dart';
+import 'package:shalvarmalvar_app/ui/login/login_page.dart';
 import 'package:shalvarmalvar_app/ui/signup/custom_form_field.dart';
 import 'package:shalvarmalvar_app/ui/utils/extentions.dart';
 import 'package:shalvarmalvar_app/ui/utils/custom_diolog_box.dart';
@@ -33,8 +35,10 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       body: Stack(
         children: [
-          const CustomAppbar(
-            appBarTitle: "ثبت نام",
+          AppBar(
+            title: const CustomAppbar(
+              appBarTitle: "ثبت نام",
+            ),
           ),
           Positioned(
             top: 50,
@@ -215,9 +219,16 @@ class _SignupPageState extends State<SignupPage> {
                                   vertical: 10,
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  PageTransition(
+                                      child: const LoginPage(),
+                                      type: PageTransitionType.leftToRight),
+                                );
+                              },
                               child: const Text(
-                                'قبلا ثبت نام کردی؟',
+                                'قبلا ثبت نام کردی؟ ورود',
                                 style:
                                     TextStyle(fontFamily: "Muli", fontSize: 15),
                               ),
